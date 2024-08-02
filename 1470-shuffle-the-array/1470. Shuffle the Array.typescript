@@ -1,18 +1,10 @@
 function shuffle(nums: number[], n: number): number[] {
     let shuffledArray = []
-    let isX = true
-    let j = n;
-    let x = 0
-    for (let i = 0; i < nums.length; i++) {
-        if (isX) {
-            shuffledArray.push(nums[x])
-            isX = false
-            x++
-        } else {
-            shuffledArray.push(nums[j])
-            j++
-            isX = true
-        }
+
+    for (let i = 0; i < n; i++) {
+        shuffledArray.push(nums[i])
+        shuffledArray.push(nums[i + n])
     }
+
     return shuffledArray
 };
