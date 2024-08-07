@@ -1,0 +1,37 @@
+function isValid(s: string): boolean {
+    if (s.length % 2 !== 0) return false
+
+    let openedParenthesesMap = {
+        '(': ')',
+        '[': ']',
+        '{': '}',
+    }
+
+    let closedParenthesesMap = {
+        ')': '(',
+        ']': '[',
+        '}': '{',
+    }
+
+    let stack = []
+    let splittedInput = s.split('')
+
+    for (let i = 0; i < splittedInput.length; i++) {
+        if (openedParenthesesMap[splittedInput[i]]) {
+            stack.push(splittedInput[i])
+        }
+
+        if (closedParenthesesMap[splittedInput[i]]) {
+            if (!stack.length) return false
+            if (openedParenthesesMap[stack.at(-1)] === splittedInput[i]) {
+                stack.pop()
+            } else {
+                return false
+            }
+        }
+    }
+    
+    if (!stack.length) return true
+
+    return false
+};
